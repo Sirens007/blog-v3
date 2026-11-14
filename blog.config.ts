@@ -7,8 +7,8 @@ const basicConfig = {
 	description: '这里是 Syrena 的个人博客，记录编程学习、项目实践、排障经验与生活片段。',
 	author: {
 		name: 'Syrena',
-		// WeAvatar 公开图片地址；绑定邮箱与公开联系邮箱可以不同，维护见 docs/comments.md。
-		avatar: 'https://weavatar.com/avatar/b203704b87e4885457440c0166c0be0075aca36d4dbf42d32071e17f76b42867?s=256&d=mp',
+		// public/images/avatar.webp 部署后的正式在线地址。
+		avatar: 'https://blog.syrena.cn/images/avatar.webp',
 		email: 'Sirens200226@outlook.com',
 		homepage: '/',
 	},

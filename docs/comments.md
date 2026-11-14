@@ -5,6 +5,7 @@
 | 内容 | 维护位置 |
 | --- | --- |
 | 上传头像、邮箱绑定 | [WeAvatar](https://weavatar.com/user/avatar) |
+| 站点作者头像源文件 | `public/images/avatar.webp` |
 | 站点作者头像的公开图片地址 | `blog.config.ts` → `author.avatar` |
 | 公开联系邮箱 | `blog.config.ts` → `author.email` |
 | 评论框提示文字 | `app/app.config.ts` → `component.comment.placeholder` |
@@ -32,7 +33,7 @@ pnpm generate
 
 然后用 `pnpm dev` 或 `pnpm preview` 打开友链页和任一文章页，检查：
 
-1. 侧栏显示 Syrena 的 WeAvatar 头像。
+1. 侧栏从 `https://blog.syrena.cn/images/avatar.webp` 显示 Syrena 的公开头像。
 2. 评论框显示两行自定义提示，输入正文后提示消失。
 3. 填入已绑定 WeAvatar 的邮箱后，头像预览能正常加载。
 4. 友链页和文章页的评论框都能初始化，窄屏和深色模式下没有新增溢出。

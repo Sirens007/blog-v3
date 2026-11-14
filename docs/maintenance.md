@@ -7,7 +7,7 @@
 | 站点名称、作者、域名、备案基础数据 | `blog.config.ts` |
 | Umami、Twikoo 脚本与服务地址 | `blog.config.ts` |
 | 导航、页脚、潮间带 emoji | `app/app.config.ts` |
-| 评论框提示与 WeAvatar 说明 | [评论与邮箱头像](comments.md) |
+| 站点头像、评论框提示与邮箱头像说明 | [评论与邮箱头像](comments.md) |
 | 文章与预览稿 | `content/posts/`、`content/previews/` |
 
 修改配置后至少执行：
