@@ -1,5 +1,6 @@
 ---
 title: Java 多线程基础：Thread、线程安全与同步机制
+permalink: /posts/javaee-multithreading/javaee-multithreading/
 description: 理解Java线程的创建、生命周期、线程安全、同步机制、锁、线程池以及并发工具的基本使用.
 date: 2026-09-10
 published: 2026-09-10

@@ -1,5 +1,6 @@
 ---
 title: Java 语法基础（一）：标识符、数据类型与变量
+permalink: /posts/javase/javase/
 description: 初步学习Java语法.
 date: 2025-09-03
 published: 2025-09-03

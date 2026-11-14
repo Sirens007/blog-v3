@@ -1,5 +1,6 @@
 ---
 title: JDBC 访问 MySQL：连接、预编译语句与事务处理
+permalink: /posts/database-jdbc/database-jdbc/
 description: 系统学习JDBC驱动配置、数据库连接、PreparedStatement、结果集与事务处理.
 date: 2026-08-28
 published: 2026-08-28

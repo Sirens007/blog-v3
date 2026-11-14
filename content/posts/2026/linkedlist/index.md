@@ -1,5 +1,6 @@
 ---
 title: 顺序表与链表：ArrayList、LinkedList 的原理与实现
+permalink: /posts/linkedlist/linkedlist/
 description: 结合 Java 源码与图解，通俗理解顺序表（ArrayList）与双向链表（LinkedList）的底层原理，并附带单链表常用核心操作的模拟实现.
 date: 2026-03-27
 published: 2026-03-27

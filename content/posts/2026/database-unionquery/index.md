@@ -1,5 +1,6 @@
 ---
 title: MySQL 多表查询：JOIN、子查询、UNION 与执行计划
+permalink: /posts/database-unionquery/database-unionquery/
 description: 系统学习MySQL多表连接、子查询、集合运算、结果写入及执行计划分析.
 date: 2026-07-28
 published: 2026-07-28

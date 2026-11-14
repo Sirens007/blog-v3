@@ -1,5 +1,6 @@
 ---
 title: Git 日常使用指南：版本回退、分支管理与远程仓库
+permalink: /posts/git-experience/git-experience/
 description: 一篇关于 Git 使用经验的文章.
 date: 2025-08-27
 published: 2025-08-27

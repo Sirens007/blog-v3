@@ -1,5 +1,6 @@
 ---
 title: Java 文件与 I/O 流：File、字节流、字符流与文件操作
+permalink: /posts/javase-iostream/javase-iostream/
 description: 梳理 File 文件与目录操作、字节流和字符流的常用 API、资源关闭与字符编码，并通过目录扫描、文件复制和内容搜索案例练习文件操作。
 date: 2026-10-06
 published: 2026-10-06

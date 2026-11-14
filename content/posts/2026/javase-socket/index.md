@@ -1,5 +1,6 @@
 ---
 title: Java Socket 编程：TCP、UDP 与回显服务器实践
+permalink: /posts/javase-socket/javase-socket/
 description: 从客户端与服务端模型出发，梳理 TCP、UDP 的特点与 Socket 常用 API，通过回显服务器和客户端示例理解网络通信、I/O 流与消息边界，并初步认识 I/O 多路复用。
 date: 2026-10-06
 published: 2026-10-06

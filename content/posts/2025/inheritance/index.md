@@ -1,5 +1,6 @@
 ---
 title: Java 继承机制：成员访问、构造链与组合选择
+permalink: /posts/inheritance/inheritance/
 description: 深度解析，详细了解Java继承
 date: 2025-09-27
 published: 2025-09-27

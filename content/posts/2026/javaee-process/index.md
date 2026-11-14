@@ -1,5 +1,6 @@
 ---
 title: 进程基础：资源管理、调度与上下文切换
+permalink: /posts/javaee-process/javaee-process/
 description: 理解程序与进程的区别，认识PCB、进程状态、调度以及进程的创建与终止机制.
 date: 2026-09-01
 published: 2026-09-01

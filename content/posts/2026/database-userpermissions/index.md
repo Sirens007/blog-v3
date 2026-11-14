@@ -1,5 +1,6 @@
 ---
 title: MySQL 用户与权限：账号、授权、角色与安全实践
+permalink: /posts/database-userpermissions/database-userpermissions/
 description: 系统学习MySQL用户账号、权限层级、授权与回收、角色管理及安全实践.
 date: 2026-08-22
 published: 2026-08-22

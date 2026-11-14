@@ -1,5 +1,6 @@
 ---
 title: 栈与队列：核心操作、循环队列与典型应用
+permalink: /posts/stackandqueue/stackandqueue/
 description: 梳理 Java 中栈（Stack）与队列（Queue）的基础概念，包含物理结构对比、用数组模拟实现循环队列，以及有效的括号等经典 LeetCode 题解思路.
 date: 2026-03-27
 published: 2026-03-27

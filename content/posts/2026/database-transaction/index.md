@@ -1,5 +1,6 @@
 ---
 title: MySQL 事务：ACID、隔离级别与 MVCC
+permalink: /posts/database-transaction/database-transaction/
 description: 系统学习MySQL事务、ACID、隔离级别、MVCC机制.
 date: 2026-08-07
 published: 2026-08-07

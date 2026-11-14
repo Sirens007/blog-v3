@@ -1,5 +1,6 @@
 ---
 title: MySQL 索引原理：B+ 树、数据页与查询优化
+permalink: /posts/database-index/database-index/
 description: 系统学习MySQL索引原理、结构、创建方法与查询优化.
 date: 2026-08-04
 published: 2026-08-04

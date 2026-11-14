@@ -37,7 +37,7 @@ function renderContent(post: ContentCollectionItem) {
 	return [
 		post.image && `<img src="${post.image}" alt="${post.title}" />`,
 		post.description && `<p>${post.description}</p>`,
-		`<a class="view-full" href="${getUrl(post.path)}" target="_blank">点击查看全文</a>`,
+		`<a class="view-full" href="${getUrl(post.permalink || post.path)}" target="_blank">点击查看全文</a>`,
 	].join(' ')
 }
 
@@ -49,7 +49,7 @@ export default defineEventHandler(async (event) => {
 		.all()
 
 	const entries = posts.map(post => ({
-		id: getUrl(post.path),
+		id: getUrl(post.permalink || post.path),
 		title: post.title ?? '',
 		updated: formatIsoDate(post.updated),
 		author: { name: typeof post.meta.author === 'string' && post.meta.author ? post.meta.author : blogConfig.author.name },
@@ -57,7 +57,7 @@ export default defineEventHandler(async (event) => {
 			$type: 'html',
 			$: renderContent(post),
 		},
-		link: { $href: getUrl(post.path) },
+		link: { $href: getUrl(post.permalink || post.path) },
 		summary: post.description,
 		category: { $term: post.categories?.[0] },
 		published: formatIsoDate(post.published ?? post.date),

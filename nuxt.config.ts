@@ -306,7 +306,8 @@ ${packageJson.homepage}
 			const { permalink, path } = ctx.content as Record<string, string | undefined>
 			// 优先使用自定义链接（permalink/abbrlink），其次隐藏基于文件路由的 URL 中的 /posts 前缀
 			if (permalink)
-				ctx.content.path = permalink
+				// Content 的 path() 查询会去除尾斜杠；公开地址仍保留在 permalink 中。
+				ctx.content.path = permalink.replace(/\/+$/, '') || '/'
 			else if (blogConfig.article.hidePostPrefix && path?.startsWith('/posts/'))
 				ctx.content.path = path.slice('/posts'.length)
 		},

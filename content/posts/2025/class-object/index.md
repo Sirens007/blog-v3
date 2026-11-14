@@ -1,5 +1,6 @@
 ---
 title: Java 类与对象：实例化、构造方法、封装与静态成员
+permalink: /posts/class-object/class-object/
 description: 深度学习Java的类与对象.
 date: 2025-09-22
 published: 2025-09-22

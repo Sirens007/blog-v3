@@ -64,10 +64,10 @@ export default antfu({
 		'vue/block-lang': 'off',
 	},
 }, {
-	// 文章中的 JSON 示例允许尾随逗号
+	// JSON 配置示例保持标准语法，复制到 package.json 等文件后也能直接解析。
 	files: ['content/**/*.json'],
 	rules: {
-		'jsonc/comma-dangle': ['warn', 'always'],
+		'jsonc/comma-dangle': ['error', 'never'],
 	},
 }).append({
 	files: ['app/**/*.css'],

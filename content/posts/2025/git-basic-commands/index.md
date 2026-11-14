@@ -1,5 +1,6 @@
 ---
 title: Git 协作工作流：分支、提交、推送与 Pull Request
+permalink: /posts/git-basic-commands/git-basic-commands/
 description: 一篇关于 Git基础命令的笔记.
 date: 2025-08-20
 published: 2025-08-20

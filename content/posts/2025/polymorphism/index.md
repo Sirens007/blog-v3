@@ -1,5 +1,6 @@
 ---
 title: Java 多态机制：类型转换、方法重写与动态绑定
+permalink: /posts/polymorphism/polymorphism/
 description: 用实例讲解多态思想
 date: 2025-09-27
 published: 2025-09-27

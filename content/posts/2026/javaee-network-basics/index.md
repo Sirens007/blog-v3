@@ -1,5 +1,6 @@
 ---
 title: 网络通信基础：IP、端口、协议分层与数据封装
+permalink: /posts/javaee-network-basics/javaee-network-basics/
 description: 从进程间通信出发，理解 IP 地址、端口号、协议与五元组，梳理 OSI 和 TCP/IP 分层模型，以及数据发送、接收过程中的封装与分用。
 date: 2026-10-04
 published: 2026-10-04

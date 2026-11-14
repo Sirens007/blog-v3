@@ -1,5 +1,6 @@
 ---
 title: Java 接口实践：对象比较、克隆与 equals/hashCode 契约
+permalink: /posts/interface-thefuncofobject/interface-thefuncofobject/
 description: 拓展接口在实际中应用的例子.
 date: 2025-10-17
 published: 2025-10-17

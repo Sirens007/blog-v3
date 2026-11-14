@@ -1,5 +1,6 @@
 ---
 title: Java 并发进阶（三）：线程安全容器与并发集合
+permalink: /posts/javaee-multithreading-collections/javaee-multithreading-collections/
 description: 掌握多线程环境下ArrayList、队列与哈希表的线程安全方案及常用并发集合实现.
 date: 2026-09-30
 published: 2026-09-30
