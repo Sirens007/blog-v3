@@ -75,7 +75,7 @@ export default defineAppConfig({
 				title: '探索',
 				items: [
 					{ icon: 'tabler:rss', text: 'Atom订阅', url: '/atom.xml' },
-					{ icon: 'tabler:chart-bar', text: '访问统计', url: 'https://umami.syrena.cn/share/TlJ67vvIIBRw5gF3' },
+					{ icon: 'tabler:chart-bar', text: '访问统计', url: blogConfig.umami.shareUrl },
 					{ icon: 'ri:subway-line', text: '开往', url: 'https://www.travellings.cn/go.html' },
 				],
 			},

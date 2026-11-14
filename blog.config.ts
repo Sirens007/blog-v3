@@ -102,6 +102,11 @@ const blogConfig = {
 		envId: 'https://twikoo.syrena.cn',
 		preload: 'https://twikoo.syrena.cn',
 	},
+
+	/** Umami 公开统计；分享链接留空时隐藏访客数和访问量。 */
+	umami: {
+		shareUrl: 'https://umami.syrena.cn/share/TlJ67vvIIBRw5gF3',
+	},
 }
 
 /** 用于生成 OPML 和友链页面配置 */

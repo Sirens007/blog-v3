@@ -50,6 +50,7 @@
     "mermaid": "catalog:content",
     "minisearch": "catalog:util",
     "nuxt": "catalog:framework",
+    "oddmisc": "catalog:util",
     "parse-domain": "catalog:util",
     "pinia": "catalog:framework",
     "plain-shiki": "catalog:content",
