@@ -1,4 +1,5 @@
-import { resolve } from 'node:path'
+import { cpSync, existsSync, mkdirSync, readdirSync, statSync, unlinkSync } from 'node:fs'
+import { relative, resolve } from 'node:path'
 import { arch, env, version as nodeVersion, platform } from 'node:process'
 import { pathToFileURL } from 'node:url'
 import { name as ciName, CLOUDFLARE_PAGES, GITHUB_ACTIONS, NETLIFY } from 'ci-info'
@@ -11,6 +12,36 @@ import redirectList from './redirects.json'
 
 function pluginPath(path: string) {
 	return pathToFileURL(resolve(`./remark-plugins/${path}.ts`)).href
+}
+
+const postsDirectory = resolve('content/posts')
+const postAssetsDirectory = resolve('.cache/post-assets')
+const postImagesDirectory = resolve(postAssetsDirectory, 'article-assets')
+const imageExtension = /\.(?:avif|gif|ico|jpe?g|png|svg|webp)$/i
+
+// 图文源文件放在一起，图片副本交由现有 Nuxt Image / Nitro 静态资源流程发布。
+function syncPostImages() {
+	mkdirSync(postImagesDirectory, { recursive: true })
+	cpSync(postsDirectory, postImagesDirectory, {
+		recursive: true,
+		preserveTimestamps: true,
+		filter: (source, destination) => {
+			const sourceStat = statSync(source)
+			if (sourceStat.isDirectory())
+				return true
+			if (!imageExtension.test(source))
+				return false
+			const destinationStat = statSync(destination, { throwIfNoEntry: false })
+			return !destinationStat || sourceStat.size !== destinationStat.size || Math.abs(sourceStat.mtimeMs - destinationStat.mtimeMs) >= 1
+		},
+	})
+	for (const entry of readdirSync(postImagesDirectory, { recursive: true, withFileTypes: true })) {
+		if (!entry.isFile())
+			continue
+		const image = resolve(entry.parentPath, entry.name)
+		if (!existsSync(resolve(postsDirectory, relative(postImagesDirectory, image))))
+			unlinkSync(image)
+	}
 }
 
 // 此处配置无需修改
@@ -194,6 +225,7 @@ export default defineNuxtConfig({
 	},
 
 	hooks: {
+		'modules:before': syncPostImages,
 		'ready': () => {
 			console.info(`
 ================================
@@ -203,6 +235,8 @@ ${packageJson.homepage}
 `)
 		},
 		'content:file:afterParse': (ctx) => {
+			if (ctx.file.body.includes('/article-assets/'))
+				syncPostImages()
 			const { permalink, path } = ctx.content as Record<string, string | undefined>
 			// 优先使用自定义链接（permalink/abbrlink），其次隐藏基于文件路由的 URL 中的 /posts 前缀
 			if (permalink)
@@ -224,6 +258,7 @@ ${packageJson.homepage}
 	},
 
 	image: {
+		dirs: [postAssetsDirectory],
 		// 尽量以这些密度点对点显示
 		densities: [1, 1.5, 2],
 		format: ['avif', 'webp'],
