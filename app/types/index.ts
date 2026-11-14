@@ -7,6 +7,7 @@ declare global {
 				region?: string
 				path?: string
 				lang?: string
+				placeholder?: string
 			}) => void
 			version: string
 		}

@@ -31,6 +31,11 @@ export default defineAppConfig({
 			tabSize: 3,
 		},
 
+		comment: {
+			/** Twikoo 原生提示文字；设为 undefined 时使用后台 COMMENT_PLACEHOLDER。 */
+			placeholder: '欢迎交流，分享你的想法或补充。\n邮箱用于关联 WeAvatar 头像和接收回复，网址请填写个人主页。',
+		},
+
 		/** 文章开头摘要 */
 		excerpt: {
 			animation: true,
@@ -45,21 +50,22 @@ export default defineAppConfig({
 
 		stats: {
 			/** 归档页面每年标题对应的年龄 */
-			birthYear: 2003,
+			birthYear: 0,
 			/** blog-stats widget 的预置文本 */
-			wordCount: '约10万',
+			wordCount: '',
 		},
 	},
 
 	// @keep-sorted
 	footer: {
 		/** 页脚版权信息，支持 <br> 换行等 HTML 标签 */
-		copyright: `© ${Temporal.Now.plainDateISO().year.toString()} ${blogConfig.author.name}`,
+		copyright: `© 2025–${Temporal.Now.plainDateISO().year.toString()} ${blogConfig.author.name}`,
 		/** 侧边栏底部图标导航 */
 		iconNav: [
 			{ icon: 'tabler:home', text: '个人主页', url: blogConfig.author.homepage },
-			{ icon: 'ri:qq-line', text: '交流群: 169994096', url: 'https://jq.qq.com/?_wv=1027&k=lQfNSeEd' },
-			{ icon: 'tabler:brand-github', text: 'GitHub: L33Z22L11', url: 'https://github.com/L33Z22L11' },
+			{ icon: 'tabler:brand-github', text: 'GitHub: Sirens007', url: 'https://github.com/Sirens007' },
+			{ icon: 'simple-icons:csdn', text: 'CSDN', url: 'https://blog.csdn.net/2402_87978990?type=blog' },
+			{ icon: 'tabler:brand-steam', text: 'Steam', url: 'https://steamcommunity.com/id/sirens007/' },
 			{ icon: 'tabler:rss', text: 'Atom订阅', url: '/atom.xml' },
 			{ icon: 'ri:subway-line', text: '开往 - 博客下一站', url: 'https://www.travellings.cn/go.html' },
 		] satisfies NavItem[],
@@ -69,23 +75,25 @@ export default defineAppConfig({
 				title: '探索',
 				items: [
 					{ icon: 'tabler:rss', text: 'Atom订阅', url: '/atom.xml' },
+					{ icon: 'tabler:chart-bar', text: '访问统计', url: 'https://umami.syrena.cn/share/TlJ67vvIIBRw5gF3' },
 					{ icon: 'ri:subway-line', text: '开往', url: 'https://www.travellings.cn/go.html' },
 				],
 			},
 			{
 				title: '社交',
 				items: [
-					{ icon: 'tabler:brand-github', text: 'L33Z22L11', url: 'https://github.com/L33Z22L11' },
-					{ icon: 'ri:qq-line', text: '群: 169994096', url: 'https://jq.qq.com/?_wv=1027&k=lQfNSeEd' },
+					{ icon: 'tabler:brand-github', text: 'Sirens007', url: 'https://github.com/Sirens007' },
+					{ icon: 'simple-icons:csdn', text: 'CSDN', url: 'https://blog.csdn.net/2402_87978990?type=blog' },
+					{ icon: 'tabler:brand-steam', text: 'Steam', url: 'https://steamcommunity.com/id/sirens007/' },
 					{ icon: 'tabler:mail', text: blogConfig.author.email, url: `mailto:${blogConfig.author.email}` },
 				],
 			},
 			{
 				title: '信息',
 				items: [
-					{ icon: 'simple-icons:nuxt', text: `主题: ${pascalCase(name)} ${version}`, url: 'https://github.com/L33Z22L11/blog-v3' },
+					{ icon: 'simple-icons:nuxt', text: `主题: ${pascalCase(name)} ${version}`, url: 'https://github.com/Sirens007/blog-v3' },
 					{ icon: 'tabler:color-swatch', text: '主题和组件文档', url: '/theme' },
-					{ icon: 'tabler:certificate', text: '陕ICP备2025082251号', url: 'https://beian.miit.gov.cn/' },
+					{ icon: 'tabler:certificate', text: '桂ICP备2026000608号-2', url: 'https://beian.miit.gov.cn/' },
 				],
 			},
 		] satisfies Nav,
@@ -93,7 +101,7 @@ export default defineAppConfig({
 
 	/** 左侧栏顶部 Logo */
 	header: {
-		logo: 'https://weavatar.com/avatar/47c0f2e82b76d9b10eb3023df9e02e4e3fdbeaf5b74b842063f207971e7fbe7b?s=160',
+		logo: blogConfig.author.avatar,
 		/** 展示标题文本，否则展示纯 Logo */
 		showTitle: true,
 		subtitle: blogConfig.subtitle,
