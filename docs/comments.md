@@ -33,7 +33,7 @@ pnpm generate
 
 然后用 `pnpm dev` 或 `pnpm preview` 打开友链页和任一文章页，检查：
 
-1. 侧栏从 `https://blog.syrena.cn/images/avatar.webp` 显示 Syrena 的公开头像。
+1. 侧栏从 `/images/avatar.webp` 显示 Syrena 的公开头像；本地与正式环境都由当前站点提供。
 2. 评论框显示两行自定义提示，输入正文后提示消失。
 3. 填入已绑定 WeAvatar 的邮箱后，头像预览能正常加载。
 4. 友链页和文章页的评论框都能初始化，窄屏和深色模式下没有新增溢出。

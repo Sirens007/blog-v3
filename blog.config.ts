@@ -8,7 +8,7 @@ const basicConfig = {
 	author: {
 		name: 'Syrena',
 		// public/images/avatar.webp 部署后的正式在线地址。
-		avatar: 'https://blog.syrena.cn/images/avatar.webp',
+		avatar: '/images/avatar.webp',
 		email: 'Sirens200226@outlook.com',
 		homepage: '/',
 	},
