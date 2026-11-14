@@ -1,3 +1,4 @@
+import { queryCollection } from '@nuxt/content/server'
 import blogConfig from '~~/blog.config'
 
 interface StatsEntry {

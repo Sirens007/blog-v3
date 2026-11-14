@@ -5,10 +5,12 @@ date: 2026-08-04
 published: 2026-08-04
 updated: 2026-08-04
 categories:
+  - 开发
   - 数据库
 tags:
   - MySQL
 image: /article-assets/2026/mysql-index/images/mysql.webp
+recommend: 2
 ---
 
 
@@ -36,7 +38,9 @@ image: /article-assets/2026/mysql-index/images/mysql.webp
 ## 2. InnoDB 主要使用 B+ 树
 
 ::alert{type="info" title="说明"}
+
 **InnoDB** 是 **MySQL** 的一种存储引擎，负责真正管理表的数据、索引、事务等底层操作
+
 ::
 
 ### 2.1 Hash 为什么不是默认选择

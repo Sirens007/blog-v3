@@ -1,4 +1,5 @@
 import type { ContentCollectionItem } from '@nuxt/content'
+import { queryCollection } from '@nuxt/content/server'
 import { pascalCase } from 'es-toolkit/string'
 import XmlBuilder from 'fast-xml-builder'
 import { Temporal } from 'temporal-polyfill'
@@ -51,7 +52,7 @@ export default defineEventHandler(async (event) => {
 		id: getUrl(post.path),
 		title: post.title ?? '',
 		updated: formatIsoDate(post.updated),
-		author: { name: post.author || blogConfig.author.name },
+		author: { name: typeof post.meta.author === 'string' && post.meta.author ? post.meta.author : blogConfig.author.name },
 		content: {
 			$type: 'html',
 			$: renderContent(post),

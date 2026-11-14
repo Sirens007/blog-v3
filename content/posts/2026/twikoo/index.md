@@ -5,10 +5,13 @@ date: 2026-05-05
 published: 2026-05-05
 updated: 2026-05-05
 categories:
+  - 技术
   - 博客运维
 tags:
   - twikoo
 image: /article-assets/2026/twikoo/images/twikoo.png
+recommend: 5
+pinned: 3
 ---
 
 ## 一.必备环境下载

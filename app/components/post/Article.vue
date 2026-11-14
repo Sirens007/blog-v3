@@ -19,6 +19,11 @@ const showAllDate = isTimeDiffSignificant(props.date, props.updated)
 		</p>
 
 		<div class="article-info">
+			<span v-if="pinned" class="article-pinned">
+				<Icon name="tabler:pin" />
+				置顶
+			</span>
+
 			<UtilDate
 				v-if="date && (showAllDate || !useUpdated)"
 				:date
@@ -81,6 +86,10 @@ const showAllDate = isTimeDiffSignificant(props.date, props.updated)
 .article-title {
 	font-size: 1.2em;
 	color: var(--c-text);
+}
+
+.article-pinned {
+	color: var(--c-primary);
 }
 
 .article-description {

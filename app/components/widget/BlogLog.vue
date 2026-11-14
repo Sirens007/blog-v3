@@ -1,12 +1,9 @@
 <script setup lang="ts">
-const { timeEstablished } = useAppConfig()
-
 const blogLog = [
-	{ label: '2025-07-26', value: '重构到 Nuxt 4 + Nuxt Content v3，启用 zhilu.site 域名' },
-	{ label: '2024-08-11', value: '重构到 Nuxt 3 + Nuxt Content v2' },
-	{ label: '2023-05-24', value: '更换框架为 Hexo，升级博客' },
-	{ label: '2020-08-24', value: '使用 zhilu.cyou 域名' },
-	{ label: timeEstablished, value: '发布第一篇文章' },
+	{ label: '2026-11-14', value: '开始迁移至 Clarity 主题，切换到 Nuxt 4 + Nuxt Content v3' },
+	{ label: '2026-09-26', value: '更换为 Shirone 主题，并启用 syrena.cn 域名' },
+	{ label: '2026-02-26', value: '迁移至云服务器，启用 sirens007.cn 域名' },
+	{ label: '2025-08-20', value: '基于 Mizuki 主题在 GitHub Pages 发布第一篇文章' },
 ]
 </script>
 

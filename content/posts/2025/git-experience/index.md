@@ -5,6 +5,7 @@ date: 2025-08-27
 published: 2025-08-27
 updated: 2025-08-27
 categories:
+  - 技术
   - Git
 tags:
   - Git
@@ -91,11 +92,9 @@ Git 会比较这三者的内容是否一致：
 2. **暂存区中的文件（通过 git add 添加的）**
 3. **最后一次提交的版本（历史）**
 
-<details class="lake-collapse">
-  <summary id="u29606243"><strong><span class="ne-text">结果分析</span></strong></summary>
+::folding{title="结果分析"}
 
-  <h4 id="98be1ecf"><span class="ne-text" style="color: #DF2A3F">🔴</span> <span class="ne-text">情况1：工作区干净</span></h4>
-  
+#### <span class="ne-text" style="color: #DF2A3F">🔴</span> <span class="ne-text">情况1：工作区干净</span>
 
 ```bash
 $ git status
@@ -103,22 +102,18 @@ On branch master
 nothing to commit, working tree clean
 ```
 
+<span class="ne-text">意思是：没有文件被修改，也没有新增或删除。</span>
 
-  <p id="u0e2b9816" class="ne-p"><span class="ne-text">意思是：没有文件被修改，也没有新增或删除。</span></p>
-
-  <h4 id="3e1a3f71"><span class="ne-text" style="color: #DF2A3F">🟡</span> <span class="ne-text">情况2：修改了文件但还没 add</span></h4>
-  
+#### <span class="ne-text" style="color: #DF2A3F">🟡</span> <span class="ne-text">情况2：修改了文件但还没 add</span>
 
 ```bash
 $ git status
 modified:   hello.txt
 ```
 
+<span class="ne-text">说明 </span>`hello.txt`<span class="ne-text"> 有改动，但还没有被添加进暂存区。</span>
 
-  <p id="ufa272c14" class="ne-p"><span class="ne-text">说明 </span><code class="ne-code"><span class="ne-text">hello.txt</span></code><span class="ne-text"> 有改动，但还没有被添加进暂存区。</span></p>
-
-  <h4 id="c160fd94"><span class="ne-text">🟢</span> <span class="ne-text">情况3：已 add 到暂存区但还没 commit</span></h4>
-  
+#### <span class="ne-text">🟢</span> <span class="ne-text">情况3：已 add 到暂存区但还没 commit</span>
 
 ```bash
 $ git status
@@ -127,8 +122,7 @@ Changes to be committed:
         modified:   hello.txt
 ```
 
-
-</details>
+::
 
 **二、git diff —— 查看修改内容**
 
@@ -148,21 +142,25 @@ git diff hello.txt
 
 来查看某个具体文件的改动。
 
-<details class="lake-collapse"><summary id="u423a2fc5"><strong><span class="ne-text">补充</span></strong></summary><h4 id="k8LQy"><span class="ne-text">查看已经 add 但还未 commit 的差异：</span></h4>
+::folding{title="补充"}
+
+#### <span class="ne-text">查看已经 add 但还未 commit 的差异：</span>
 
 ```bash
 git diff --cached
 ```
 
-<p id="u52bf5124" class="ne-p"><span class="ne-text">或者：</span></p>
+<span class="ne-text">或者：</span>
 
 ```bash
 git diff --staged
 ```
 
-<h4 id="u539c"><span class="ne-text"></span><span class="ne-text">作用：</span></h4><ul class="ne-ul"><li id="udf0dfced" data-lake-index-type="0"><span class="ne-text">查看“暂存区”中与“上一次提交版本”之间的差异。</span></li></ul></details>
+#### <span class="ne-text"></span><span class="ne-text">作用：</span>
 
+- <span class="ne-text">查看“暂存区”中与“上一次提交版本”之间的差异。</span>
 
+::
 
 ### 4.文件恢复与版本回退
 **开发中你经常会遇到这些情况：**
@@ -173,7 +171,6 @@ git diff --staged
 | add 错文件了 | 想撤回到未暂存状态 |
 | commit 之后后悔了 | 想撤销或回退提交 |
 | 改了很多但不想要了 | 想恢复整个文件夹到之前状 |
-
 
 **本节主要命令：**
 
@@ -427,8 +424,6 @@ git clone https://github.com/Sirens007/MyStorage.git
 + 自动把该仓库的所有版本历史下载到本地
 + 自动设置好 `origin` 这个远程名，指向该仓库
 
-
-
 ---
 
 **（2）remote - 管理远程仓库地址**
@@ -459,8 +454,6 @@ git remote remove origin
 
 `origin` 是默认的远程仓库名字，你也可以用别的名字。
 
-
-
 ---
 
 **（3）push - 推送本地代码到远程**
@@ -483,8 +476,6 @@ git push -u origin main
 git push
 ```
 
-
-
 ---
 
 **（4）pull - 从远程拉取最新版本**
@@ -504,16 +495,12 @@ git pull origin main
 Already up to date.
 ```
 
-
-
 ---
 
 **（5）远程分支与本地分支的关系**
 
 + 当你执行 `git clone` 或 `git fetch` 后，Git 会在本地维护远程分支的快照，叫做 **远程跟踪分支**，格式一般是 `origin/分支名`。
 + 本地分支和远程分支是分开的，推送（`push`）和拉取（`pull`）就是它们之间的同步操作。
-
-
 
 ---
 
@@ -531,8 +518,6 @@ git branch -a
 
 + 本地和远程所有分支都会显示
 
-
-
 ---
 
 **（7）跟踪远程分支的新建本地分支**
@@ -544,8 +529,6 @@ git switch-c dev origin/dev
 ```
 
 + 这会基于远程`dev`分支新建本地`dev`分支
-
-
 
 ---
 
@@ -569,8 +552,6 @@ git pull --rebase origin main
 ```
 
 + `--rebase` 表示把你的提交“挪到”最新远程修改之后，避免额外合并提交。
-
-
 
 ---
 

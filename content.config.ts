@@ -20,6 +20,8 @@ export interface ArticleSchema {
 
 	image?: string
 	recommend?: number
+	/** 首页置顶权重，数值越大越靠前 */
+	pinned?: number
 	references?: { title?: string, link?: string }[]
 	/** TODO */
 	draft?: boolean
@@ -40,6 +42,7 @@ const articleSchema = z.object({
 
 	image: z.string().optional(),
 	recommend: z.number().optional(),
+	pinned: z.number().int().nonnegative().default(0),
 	references: z.array(z.object({
 		title: z.string().optional(),
 		link: z.string().optional(),
