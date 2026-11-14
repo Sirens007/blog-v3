@@ -9,6 +9,7 @@
 | 导航、页脚、潮间带 emoji | `app/app.config.ts` |
 | 站点头像、评论框提示与邮箱头像说明 | [评论与邮箱头像](comments.md) |
 | 文章与预览稿 | `content/posts/`、`content/previews/` |
+| GitHub Actions 自动部署、服务器目录与回退 | [服务器部署](deployment.md) |
 
 ## 迁入文章的固定地址
 

@@ -1,0 +1,132 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: blog-v3-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      CI: true
+      RELEASE_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 26.13.0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+        with:
+          run_install: false
+          cache: true
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --prefer-offline
+
+      - name: Lint
+        run: pnpm exec eslint . --max-warnings 0
+
+      - name: Generate static site
+        # Keep directory/index.html output for the existing Nginx try_files rule.
+        # Only the build child process loses GITHUB_ACTIONS; CI remains enabled.
+        run: env -u GITHUB_ACTIONS pnpm generate
+
+      - name: Check deployment files
+        run: |
+          test -s .output/public/index.html
+          test -s .output/public/archive/index.html
+          test -s .output/public/link/index.html
+          node --input-type=module <<'NODE'
+          import { existsSync, readFileSync } from 'node:fs';
+          import { join } from 'node:path';
+          const redirects = JSON.parse(readFileSync('redirects.json', 'utf8'));
+          for (const path of new Set(Object.values(redirects))) {
+            if (!path.startsWith('/posts/')) continue;
+            const file = join('.output/public', decodeURI(path), 'index.html');
+            if (!existsSync(file)) throw new Error(`Missing migrated article: ${path}`);
+          }
+          NODE
+          printf '%s\n' "$GITHUB_SHA" > .output/public/deploy-version.txt
+
+      - name: Configure SSH
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          [[ "$DEPLOY_HOST" =~ ^[a-zA-Z0-9.-]+$ ]]
+          [[ "$DEPLOY_USER" =~ ^[a-zA-Z_][a-zA-Z0-9_-]*$ ]]
+          test -n "$DEPLOY_SSH_KEY"
+          test -n "$DEPLOY_KNOWN_HOSTS"
+          install -m 700 -d ~/.ssh
+          umask 077
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/blog_deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/blog_known_hosts
+          ssh-keygen -y -f ~/.ssh/blog_deploy_key > /dev/null
+          cat > ~/.ssh/config <<EOF
+          Host blog-production
+            HostName $DEPLOY_HOST
+            User $DEPLOY_USER
+            Port 22
+            IdentityFile ~/.ssh/blog_deploy_key
+            UserKnownHostsFile ~/.ssh/blog_known_hosts
+            StrictHostKeyChecking yes
+            IdentitiesOnly yes
+            BatchMode yes
+            ConnectTimeout 15
+          EOF
+
+      - name: Prepare release directory
+        run: ssh blog-production "bash -s -- prepare $RELEASE_ID $GITHUB_SHA" < .github/scripts/deploy-remote.sh
+
+      - name: Upload static files
+        id: upload
+        run: |
+          rsync -az --delete-delay --delay-updates \
+            --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r \
+            .output/public/ "blog-production:/var/www/blog/.blog-v3/releases/$RELEASE_ID/"
+
+      - name: Activate release
+        run: ssh blog-production "bash -s -- activate $RELEASE_ID $GITHUB_SHA" < .github/scripts/deploy-remote.sh
+
+      - name: Verify public deployment
+        id: verify
+        run: |
+          for attempt in 1 2 3 4 5; do
+            if version=$(curl --fail --silent --show-error --connect-timeout 10 --max-time 20 \
+              -H 'Cache-Control: no-cache' \
+              "https://blog.syrena.cn/deploy-version.txt?run=$RELEASE_ID-$attempt") \
+              && [[ "$version" == "$GITHUB_SHA" ]]; then
+              exit 0
+            fi
+            sleep 3
+          done
+          echo 'Public deployment does not match this commit.' >&2
+          exit 1
+
+      - name: Roll back failed deployment
+        if: failure() && steps.upload.outcome == 'success'
+        run: ssh blog-production "bash -s -- rollback $RELEASE_ID $GITHUB_SHA" < .github/scripts/deploy-remote.sh
+
+      - name: Remove SSH credentials
+        if: always()
+        run: rm -f ~/.ssh/blog_deploy_key ~/.ssh/blog_known_hosts ~/.ssh/config
