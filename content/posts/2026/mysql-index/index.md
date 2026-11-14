@@ -8,7 +8,7 @@ categories:
   - 数据库
 tags:
   - MySQL
-image: /article-assets/2026/mysql-index/images/mysql.png
+image: /article-assets/2026/mysql-index/images/mysql.webp
 ---
 
 

@@ -1,5 +1,5 @@
-import { cpSync, existsSync, mkdirSync, readdirSync, statSync, unlinkSync } from 'node:fs'
-import { relative, resolve } from 'node:path'
+import { copyFileSync, existsSync, mkdirSync, readdirSync, statSync, unlinkSync, utimesSync, watch } from 'node:fs'
+import { dirname, isAbsolute, relative, resolve, sep } from 'node:path'
 import { arch, env, version as nodeVersion, platform } from 'node:process'
 import { pathToFileURL } from 'node:url'
 import { name as ciName, CLOUDFLARE_PAGES, GITHUB_ACTIONS, NETLIFY } from 'ci-info'
@@ -18,34 +18,60 @@ const postsDirectory = resolve('content/posts')
 const postAssetsDirectory = resolve('.cache/post-assets')
 const postImagesDirectory = resolve(postAssetsDirectory, 'article-assets')
 const imageExtension = /\.(?:avif|gif|ico|jpe?g|png|svg|webp)$/i
+let postImagesWatcher: ReturnType<typeof watch> | undefined
+let postImageUpdateTimer: ReturnType<typeof setTimeout> | undefined
+const pendingPostImages = new Set<string>()
 
-// 图文源文件放在一起，图片副本交由现有 Nuxt Image / Nitro 静态资源流程发布。
+function syncPostImage(source: string) {
+	const fromPosts = relative(postsDirectory, source)
+	if (!imageExtension.test(source) || fromPosts === '..' || fromPosts.startsWith(`..${sep}`) || isAbsolute(fromPosts))
+		return false
+	const destination = resolve(postImagesDirectory, fromPosts)
+	const sourceStat = statSync(source, { throwIfNoEntry: false })
+	const destinationStat = statSync(destination, { throwIfNoEntry: false })
+	if (!sourceStat) {
+		if (!destinationStat)
+			return false
+		unlinkSync(destination)
+		return true
+	}
+	if (!sourceStat.isFile() || (sourceStat.size === destinationStat?.size && Math.abs(sourceStat.mtimeMs - destinationStat.mtimeMs) < 1))
+		return false
+	mkdirSync(dirname(destination), { recursive: true })
+	copyFileSync(source, destination)
+	utimesSync(destination, sourceStat.atime, sourceStat.mtime)
+	return true
+}
+
+// 构建前全量检查一次；开发期间直接同步变动的单张图片。
 function syncPostImages() {
+	let changed = false
 	mkdirSync(postImagesDirectory, { recursive: true })
-	cpSync(postsDirectory, postImagesDirectory, {
-		recursive: true,
-		preserveTimestamps: true,
-		filter: (source, destination) => {
-			const sourceStat = statSync(source)
-			if (sourceStat.isDirectory())
-				return true
-			if (!imageExtension.test(source))
-				return false
-			const destinationStat = statSync(destination, { throwIfNoEntry: false })
-			return !destinationStat || sourceStat.size !== destinationStat.size || Math.abs(sourceStat.mtimeMs - destinationStat.mtimeMs) >= 1
-		},
-	})
+	for (const entry of readdirSync(postsDirectory, { recursive: true, withFileTypes: true })) {
+		if (entry.isFile() && imageExtension.test(entry.name))
+			changed = syncPostImage(resolve(entry.parentPath, entry.name)) || changed
+	}
 	for (const entry of readdirSync(postImagesDirectory, { recursive: true, withFileTypes: true })) {
 		if (!entry.isFile())
 			continue
 		const image = resolve(entry.parentPath, entry.name)
-		if (!existsSync(resolve(postsDirectory, relative(postImagesDirectory, image))))
+		if (!existsSync(resolve(postsDirectory, relative(postImagesDirectory, image)))) {
 			unlinkSync(image)
+			changed = true
+		}
 	}
+	return changed
 }
 
 // 此处配置无需修改
 export default defineNuxtConfig({
+	$development: {
+		image: {
+			// 开发预览重新校验本地图片，避免替换图片后继续使用旧副本。
+			ipx: { fs: { maxAge: 0 } },
+		},
+	},
+
 	app: {
 		head: {
 			meta: [
@@ -225,7 +251,49 @@ export default defineNuxtConfig({
 	},
 
 	hooks: {
-		'modules:before': syncPostImages,
+		'modules:before': () => {
+			syncPostImages()
+		},
+		'vite:serverCreated': (server, { isClient }) => {
+			if (!isClient || postImagesWatcher)
+				return
+			// Nuxt Content 将 content/** 排除在 Vite 监听之外，单独监听图片并复用其刷新通道。
+			postImagesWatcher = watch(postsDirectory, { recursive: true }, (_event, filename) => {
+				if (!filename)
+					return
+				pendingPostImages.add(resolve(postsDirectory, filename))
+				clearTimeout(postImageUpdateTimer)
+				postImageUpdateTimer = setTimeout(() => {
+					const updates = [...pendingPostImages]
+					pendingPostImages.clear()
+					let changed = false
+					try {
+						for (const source of updates) {
+							if (imageExtension.test(source)) {
+								changed = syncPostImage(source) || changed
+							}
+							else {
+								const destination = resolve(postImagesDirectory, relative(postsDirectory, source))
+								if (statSync(source, { throwIfNoEntry: false })?.isDirectory() || statSync(destination, { throwIfNoEntry: false })?.isDirectory())
+									changed = syncPostImages() || changed
+							}
+						}
+						if (changed)
+							server.ws.send({ type: 'full-reload' })
+					}
+					catch (error) {
+						console.error('[post-images] Failed to sync images:', error)
+					}
+				}, 80)
+			})
+			postImagesWatcher.on('error', error => console.error('[post-images] Image watcher error:', error))
+		},
+		'close': () => {
+			clearTimeout(postImageUpdateTimer)
+			postImagesWatcher?.close()
+			postImagesWatcher = undefined
+			pendingPostImages.clear()
+		},
 		'ready': () => {
 			console.info(`
 ================================
@@ -235,8 +303,6 @@ ${packageJson.homepage}
 `)
 		},
 		'content:file:afterParse': (ctx) => {
-			if (ctx.file.body.includes('/article-assets/'))
-				syncPostImages()
 			const { permalink, path } = ctx.content as Record<string, string | undefined>
 			// 优先使用自定义链接（permalink/abbrlink），其次隐藏基于文件路由的 URL 中的 /posts 前缀
 			if (permalink)
