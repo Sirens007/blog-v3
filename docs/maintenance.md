@@ -19,10 +19,12 @@
 - Twikoo 显式使用文章 `permalink` 作为评论路径；Umami 保持原网站 ID，浏览器继续访问原文章路径。
 - 未来新增文章仍按主题默认的 `/年份/文章名` 路径发布，无需添加 `permalink` 或重定向。本站没有设置全局尾斜杠规则，也没有更改主题默认的预渲染配置。上线时检查服务器不会将旧地址改写到其他路径。
 
-修改配置后至少执行：
+仓库通过 `.gitattributes` 固定文本文件使用 LF，与 `.editorconfig` 保持一致；无需修改个人全局 Git 配置。
+
+修改后至少执行完整校验与生产构建：
 
 ```powershell
-pnpm exec eslint blog.config.ts app/app.config.ts app/components/post/Comment.vue app/types/index.ts
+pnpm exec eslint . --max-warnings 0
 pnpm generate
 ```
 
