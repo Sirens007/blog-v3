@@ -16,6 +16,9 @@ const asideWidgetNames = computed<WidgetName[]>(() => {
 const { widgets } = useWidgets(asideWidgetNames)
 
 if (post.value) {
+	if (post.value.permalink) {
+		useHead({ link: [{ rel: 'canonical', href: new URL(post.value.permalink, useAppConfig().url).href }] })
+	}
 	useSeoMeta({
 		title: post.value.title,
 		ogType: 'article',

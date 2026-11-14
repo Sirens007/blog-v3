@@ -1,5 +1,6 @@
 ---
 title: Java String 深入理解：不可变性、常量池与高效拼接
+permalink: /posts/stringclass/stringclass/
 description: 重识String类，运用String类.
 date: 2025-10-29
 published: 2025-10-29

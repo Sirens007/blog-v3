@@ -2,6 +2,7 @@
 import type { TippyComponent } from 'vue-tippy'
 
 const appConfig = useAppConfig()
+const { post } = useArticle()
 
 const commentEl = useTemplateRef('comment')
 const popoverEl = useTemplateRef<TippyComponent>('popover')
@@ -54,6 +55,8 @@ function confirmOpen() {
 onMounted(() => {
 	window.twikoo?.init?.({
 		envId: appConfig.twikoo?.envId,
+		// 沿用 Shirone 的评论路径，包括末尾斜杠。
+		path: post.value?.permalink || window.location.pathname,
 		// twikoo 会把挂载后的元素变为 #twikoo
 		el: '#twikoo',
 		placeholder: appConfig.component.comment.placeholder,

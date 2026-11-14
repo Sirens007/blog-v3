@@ -1,5 +1,6 @@
 ---
 title: Java 并发进阶（二）：CAS、原子类与 JUC 工具
+permalink: /posts/javaee-multithreading-juc/javaee-multithreading-juc/
 description: 理解CAS、原子类与ABA问题，掌握Callable、ReentrantLock、Semaphore和CountDownLatch等JUC并发工具.
 date: 2026-09-29
 published: 2026-09-29

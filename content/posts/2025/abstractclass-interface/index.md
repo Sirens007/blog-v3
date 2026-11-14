@@ -1,5 +1,6 @@
 ---
 title: Java 抽象类与接口：类型约束、接口继承与 Object 基类
+permalink: /posts/abstractclass-interface/abstractclass-interface/
 description: 深度了解抽象类、接口的应用，补充对Object的了解.
 date: 2025-10-17
 published: 2025-10-17

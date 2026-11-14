@@ -1,5 +1,6 @@
 ---
 title: Java 包装类与泛型：装箱拆箱、类型擦除与边界约束
+permalink: /posts/wrapper-generics/wrapper-generics/
 description: 系统梳理 Java 包装类与泛型机制，从装箱拆箱到泛型用法，深入解析类型擦除原理与编译期行为，理解泛型的底层本质.
 date: 2026-03-13
 published: 2026-03-13

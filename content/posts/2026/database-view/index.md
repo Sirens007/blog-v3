@@ -1,5 +1,6 @@
 ---
 title: MySQL 视图：定义、更新规则与执行算法
+permalink: /posts/database-view/database-view/
 description: 系统学习MySQL视图的创建、查询、更新、检查选项、处理算法与权限控制.
 date: 2026-08-10
 published: 2026-08-10

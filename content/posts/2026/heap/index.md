@@ -1,5 +1,6 @@
 ---
 title: 堆与优先队列：建堆、调整与 Top K 问题
+permalink: /posts/heap/heap/
 description: 从堆的结构与操作出发，讲解建堆、调整及优先队列实现，并给出 TopK 问题的常见解法.
 date: 2026-04-08
 published: 2026-04-08

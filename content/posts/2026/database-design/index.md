@@ -1,5 +1,6 @@
 ---
 title: 关系数据库设计：实体关系、函数依赖与三大范式
+permalink: /posts/database-design/database-design/
 description: 认识MySQL数据库设计原理.
 date: 2026-07-26
 published: 2026-07-26

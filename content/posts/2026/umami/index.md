@@ -1,5 +1,6 @@
 ---
 title: Umami 自托管迁移：Docker 部署、Nginx 代理与数据导入
+permalink: /posts/umami/umami/
 description: 详细部署Umami在你的服务器中，可视化访问数据.
 date: 2026-05-05
 published: 2026-05-05

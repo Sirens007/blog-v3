@@ -11,7 +11,7 @@ const coverFilter = computed(() => props.meta?.coverFilter || (props.meta?.cover
 
 const shareText = `【${appConfig.title}】${props.title}\n\n${
 	props.description ? `${props.description}\n\n` : ''}${
-	new URL(props.path!, appConfig.url).href}`
+	new URL(props.permalink || props.path!, appConfig.url).href}`
 
 const { copy, copied } = useCopy(shareText)
 </script>

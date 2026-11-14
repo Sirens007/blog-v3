@@ -1,5 +1,6 @@
 ---
 title: Java 并发进阶（一）：锁策略与 synchronized 原理
+permalink: /posts/javaee-multithreading-locks/javaee-multithreading-locks/
 description: 系统梳理乐观锁、悲观锁、自旋锁、读写锁等常见锁策略，并深入理解synchronized的加锁过程与优化机制.
 date: 2026-09-28
 published: 2026-09-28

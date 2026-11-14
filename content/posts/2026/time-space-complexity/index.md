@@ -1,5 +1,6 @@
 ---
 title: 算法复杂度：大 O 表示法、时间空间分析与平均情况
+permalink: /posts/time-space-complexity/time-space-complexity/
 description: 系统讲解时间与空间复杂度，从大 O 表示法到典型算法推导，重点分析平均时间复杂度的计算方法与实际案例.
 date: 2026-03-13
 published: 2026-03-13

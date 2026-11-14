@@ -1,5 +1,6 @@
 ---
 title: MySQL 基础操作：DDL、DML、DQL 与 CRUD
+permalink: /posts/database-crud/database-crud/
 description: 了解MySQL基本CRUD语法.
 date: 2026-07-22
 published: 2026-07-22

@@ -1,5 +1,6 @@
 ---
 title: Twikoo 自托管部署：本地 MongoDB 与 Nginx 反向代理
+permalink: /posts/twikoo/twikoo/
 description: 本地化MongoDB，让twikoo评论不受网络限制.
 date: 2026-05-05
 published: 2026-05-05

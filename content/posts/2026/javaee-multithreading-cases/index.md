@@ -1,5 +1,6 @@
 ---
 title: Java 并发实践：单例模式、阻塞队列、线程池与定时器
+permalink: /posts/javaee-multithreading-cases/javaee-multithreading-cases/
 description: 通过单例模式、阻塞队列、线程池和定时器等案例，掌握Java多线程编程的实际应用与核心实现.
 date: 2026-09-19
 published: 2026-09-19

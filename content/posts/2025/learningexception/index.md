@@ -1,5 +1,6 @@
 ---
 title: Java 异常处理：异常体系、传播机制与自定义异常
+permalink: /posts/learningexception/learningexception/
 description: 系统讲解 Java 异常机制，从异常体系到 try-catch 实战，结合防御式编程与异常链，掌握高质量错误处理方式.
 date: 2025-11-17
 published: 2025-11-17

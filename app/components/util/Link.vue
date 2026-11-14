@@ -5,7 +5,12 @@ defineProps<{ to?: string }>()
 <template>
 <a v-if="to?.startsWith('#')" :href="to"><slot /></a>
 <span v-else-if="typeof to === 'undefined'"><slot /></span>
-<NuxtLink v-else :to :target="isExtLink(to) ? '_blank' : undefined">
+<NuxtLink
+	v-else
+	:to
+	:target="isExtLink(to) ? '_blank' : undefined"
+	:trailing-slash="to?.startsWith('/posts/') ? 'append' : undefined"
+>
 	<slot />
 </NuxtLink>
 </template>

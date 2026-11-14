@@ -1,5 +1,6 @@
 ---
 title: 七种经典排序算法：实现思路、复杂度与适用场景
+permalink: /posts/sort/sort/
 description: 汇总常见七种排序算法的基本思想、实现过程与时间复杂度，并结合代码示例对比不同排序方法的适用场景.
 date: 2026-04-14
 published: 2026-04-14

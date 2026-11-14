@@ -1,5 +1,6 @@
 ---
 title: 二叉树：结构性质、存储方式与遍历实现
+permalink: /posts/binarytree/binarytree/
 description: 从树的基础概念出发，系统总结二叉树的结构特点、性质推导、存储方式以及多种遍历实现方法.
 date: 2026-04-08
 published: 2026-04-08

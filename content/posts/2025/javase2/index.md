@@ -1,5 +1,6 @@
 ---
 title: Java 语法基础（二）：运算符、流程控制与数组
+permalink: /posts/javase2/javase2/
 description: 初步学习Java语法.
 date: 2025-09-16
 published: 2025-09-16

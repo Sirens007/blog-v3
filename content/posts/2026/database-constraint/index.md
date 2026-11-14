@@ -1,5 +1,6 @@
 ---
 title: MySQL 约束：数据完整性、主外键与检查规则
+permalink: /posts/database-constraint/database-constraint/
 description: 了解数据库约束，学习约束语法.
 date: 2026-07-25
 published: 2026-07-25

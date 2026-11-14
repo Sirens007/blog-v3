@@ -1,5 +1,6 @@
 ---
 title: Mizuki 博客部署指南：本地构建与 GitHub Pages 发布
+permalink: /posts/github-pages/github-pages/
 description: 一篇关于建立GitHub Pages博客的文章.
 date: 2025-08-27
 published: 2025-08-27

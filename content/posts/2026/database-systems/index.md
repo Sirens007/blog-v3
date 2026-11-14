@@ -1,5 +1,6 @@
 ---
 title: 数据库系统概论期末复习：数据模型、关系理论与 SQL
+permalink: /posts/database-systems/database-systems/
 description: 专攻SQL知识点，快速掌握考点.
 date: 2026-06-06
 published: 2026-06-06
