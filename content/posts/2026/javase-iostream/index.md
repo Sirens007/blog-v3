@@ -12,7 +12,7 @@ tags:
   - Java SE
   - I/O 流
   - 文件操作
-image: /article-assets/2026/javase-iostream/images/cover.png
+image: /article-assets/2026/javase-iostream/images/cover.webp
 ---
 
 **从开发的角度，文件分为两类**

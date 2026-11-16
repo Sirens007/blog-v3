@@ -14,7 +14,7 @@ tags:
   - TCP
   - UDP
   - 网络编程
-image: /article-assets/2026/javase-socket/images/cover.png
+image: /article-assets/2026/javase-socket/images/cover.webp
 ---
 
 ## 1.网络编程

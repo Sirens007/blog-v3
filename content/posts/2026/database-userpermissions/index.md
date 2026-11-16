@@ -10,7 +10,7 @@ categories:
   - 数据库
 tags:
   - MySQL
-image: /article-assets/2026/database-userpermissions/images/cover.png
+image: /article-assets/2026/database-userpermissions/images/cover.webp
 ---
 
 > 适用环境：MySQL 8.0.39。

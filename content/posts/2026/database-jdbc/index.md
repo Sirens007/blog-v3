@@ -12,7 +12,7 @@ tags:
   - MySQL
   - Java
   - JDBC
-image: /article-assets/2026/database-jdbc/images/cover.png
+image: /article-assets/2026/database-jdbc/images/cover.webp
 ---
 
 

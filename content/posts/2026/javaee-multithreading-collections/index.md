@@ -12,7 +12,7 @@ tags:
   - Java
   - Java SE
   - 多线程
-image: /article-assets/2026/javaee-multithreading-collections/images/cover.png
+image: /article-assets/2026/javaee-multithreading-collections/images/cover.webp
 ---
 
 ## 1.线程安全的集合类

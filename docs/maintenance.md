@@ -22,7 +22,7 @@
 
 仓库通过 `.gitattributes` 固定文本文件使用 LF，与 `.editorconfig` 保持一致；无需修改个人全局 Git 配置。
 
-文章封面统一命名为各文章 `images/` 目录下的 `cover.<扩展名>`，并在 frontmatter 的 `image` 字段引用对应的 `/article-assets/年份/文章目录/images/cover.<扩展名>` 地址。重命名时同步修改引用，保留图片格式和文章固定地址。
+文章封面统一转换为 WebP，命名为各文章 `images/` 目录下的 `cover.webp`，并在 frontmatter 的 `image` 字段引用对应的 `/article-assets/年份/文章目录/images/cover.webp` 地址。转换时同步修改引用，保留原图尺寸、构图和文章固定地址。
 
 列表和轮播封面使用 `nuxt.config.ts` 的 `image.presets.postThumbnail`，输出 640px 宽的 WebP 缩略图，并在两个组件中固定 `densities="1"` 避免全局倍图配置放大尺寸。首页仅在静态生成时通过同一预设登记全部文章封面，使后续分页和分类筛选也有可用的缩略图。正文和文章页头部继续使用原有图片路径；验收时应检查后续分页的图片也能正常加载。
 

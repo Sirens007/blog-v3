@@ -12,7 +12,7 @@ tags:
   - Java
   - Java SE
   - 多线程
-image: /article-assets/2026/javaee-multithreading-locks/images/cover.png
+image: /article-assets/2026/javaee-multithreading-locks/images/cover.webp
 recommend: 1
 ---
 

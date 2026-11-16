@@ -12,7 +12,7 @@ tags:
   - 操作系统
   - 进程
   - 线程
-image: /article-assets/2026/javaee-process/images/cover.png
+image: /article-assets/2026/javaee-process/images/cover.webp
 ---
 
 **你有没有想过，当我们双击一个程序时，操作系统到底做了什么？**

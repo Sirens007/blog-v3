@@ -10,7 +10,7 @@ categories:
   - Git
 tags:
   - Git
-image: /article-assets/2025/git-experience/images/cover.png
+image: /article-assets/2025/git-experience/images/cover.webp
 ---
 
 ## 📝以自己经验用Git

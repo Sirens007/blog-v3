@@ -10,7 +10,7 @@ categories:
   - 博客运维
 tags:
   - Umami
-image: /article-assets/2026/umami/images/cover.png
+image: /article-assets/2026/umami/images/cover.webp
 recommend: 6
 pinned: 1
 ---

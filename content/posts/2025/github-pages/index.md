@@ -10,7 +10,7 @@ categories:
   - 博客运维
 tags:
   - GitHub Pages
-image: /article-assets/2025/github-pages/images/cover.png
+image: /article-assets/2025/github-pages/images/cover.webp
 ---
 
 ## 环境依赖

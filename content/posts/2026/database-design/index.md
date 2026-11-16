@@ -10,7 +10,7 @@ categories:
   - 数据库
 tags:
   - MySQL
-image: /article-assets/2026/database-design/images/cover.png
+image: /article-assets/2026/database-design/images/cover.webp
 ---
 
 

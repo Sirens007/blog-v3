@@ -13,7 +13,7 @@ tags:
   - 网络通信
   - TCP/IP
   - 协议分层
-image: /article-assets/2026/javaee-network-basics/images/cover.png
+image: /article-assets/2026/javaee-network-basics/images/cover.webp
 ---
 
 计算机连接起来以后，数据到底应该送到哪里，又应该怎样理解收到的数据？  

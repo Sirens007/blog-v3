@@ -10,7 +10,7 @@ categories:
   - 博客运维
 tags:
   - twikoo
-image: /article-assets/2026/twikoo/images/cover.png
+image: /article-assets/2026/twikoo/images/cover.webp
 recommend: 5
 pinned: 3
 ---
