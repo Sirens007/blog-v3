@@ -10,7 +10,7 @@ categories:
   - Git
 tags:
   - Git
-image: /article-assets/2025/git-basic-commands/images/cover.svg
+image: /article-assets/2025/git-basic-commands/images/cover.webp
 references:
   - title: '封面 Git 标志：Jason Long（CC BY 3.0）'
     link: https://git-scm.com/community/logos

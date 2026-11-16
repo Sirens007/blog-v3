@@ -12,7 +12,7 @@ tags:
   - Java
   - Java SE
   - 多线程
-image: /article-assets/2026/javaee-multithreading-cases/images/thread.png
+image: /article-assets/2026/javaee-multithreading-cases/images/cover.png
 ---
 
 ## 1. 单例模式
