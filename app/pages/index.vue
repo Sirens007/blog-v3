@@ -12,6 +12,16 @@ const { data: listRaw } = await useAsyncData(
 	() => queryArticleIndex(),
 	{ default: () => [] },
 )
+
+// 静态部署也需生成后续分页和分类筛选会用到的封面缩略图。
+if (import.meta.prerender) {
+	const $img = useImage()
+	for (const { image } of listRaw.value) {
+		if (image)
+			$img(image, {}, { preset: 'postThumbnail' })
+	}
+}
+
 const { listSorted, isAscending, sortOrder } = useArticleSort(listRaw, {
 	bindDirectionQuery: 'asc',
 	bindOrderQuery: 'sort',

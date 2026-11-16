@@ -326,6 +326,11 @@ ${packageJson.homepage}
 
 	image: {
 		dirs: [postAssetsDirectory],
+		presets: {
+			postThumbnail: {
+				modifiers: { width: 640, format: 'webp' },
+			},
+		},
 		// 尽量以这些密度点对点显示
 		densities: [1, 1.5, 2],
 		format: ['avif', 'webp'],

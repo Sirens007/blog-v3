@@ -22,6 +22,8 @@
 
 仓库通过 `.gitattributes` 固定文本文件使用 LF，与 `.editorconfig` 保持一致；无需修改个人全局 Git 配置。
 
+列表和轮播封面使用 `nuxt.config.ts` 的 `image.presets.postThumbnail`，输出 640px 宽的 WebP 缩略图，并在两个组件中固定 `densities="1"` 避免全局倍图配置放大尺寸。首页仅在静态生成时通过同一预设登记全部文章封面，使后续分页和分类筛选也有可用的缩略图。正文和文章页头部继续使用原有图片路径；验收时应检查后续分页的图片也能正常加载。
+
 修改后至少执行完整校验与生产构建：
 
 ```powershell

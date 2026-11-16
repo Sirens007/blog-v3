@@ -8,7 +8,14 @@ const showAllDate = isTimeDiffSignificant(props.date, props.updated)
 
 <template>
 <UtilLink class="article-card card upraise" :data-transition-key="path" data-transition-enter>
-	<NuxtImg v-if="image" class="article-cover" :src="image" :alt="title" />
+	<NuxtImg
+		v-if="image"
+		class="article-cover"
+		:src="image"
+		:alt="title"
+		preset="postThumbnail"
+		densities="1"
+	/>
 	<article>
 		<h2 class="article-title text-creative">
 			{{ title }}
