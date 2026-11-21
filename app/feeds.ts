@@ -1663,6 +1663,16 @@ export default [
 				date: '2026-10-18',
 				comment: 'AI 经营的新站，分享 AI 创作的技术、随笔与阅读内容。',
 			},
+			{
+				author: 'FamousPig',
+				desc: '世界人民大团结',
+				link: 'https://famous-pig.github.io/',
+				feed: 'https://famous-pig.github.io/rss.xml',
+				icon: 'https://famous-pig.github.io/favicon/icon-light.ico',
+				avatar: 'https://famous-pig.github.io/assets/images/avatar-takagi.png',
+				archs: ['Astro', 'GitHub Pages'],
+				date: '2026-11-21',
+			},
 		],
 	},
 	// #endregion
