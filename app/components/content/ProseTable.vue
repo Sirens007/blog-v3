@@ -31,6 +31,8 @@ const [scroll, toggleScroll] = useToggle(true)
 	table.scroll {
 		contain: layout; /* KaTeX 撑开宽度 */
 		display: block;
+		width: max-content;
+		max-width: 100%;
 		white-space: nowrap;
 		word-break: normal;
 	}

@@ -26,6 +26,18 @@
 
 列表和轮播封面使用 `nuxt.config.ts` 的 `image.presets.postThumbnail`，输出 640px 宽的 WebP 缩略图，并在两个组件中固定 `densities="1"` 避免全局倍图配置放大尺寸。首页仅在静态生成时通过同一预设登记全部文章封面，使后续分页和分类筛选也有可用的缩略图。正文和文章页头部继续使用原有图片路径；验收时应检查后续分页的图片也能正常加载。
 
+## 新文章的 Markdown 与显示检查
+
+新增或整理文章时保留正文、代码和章节编号。模仿 example 的标题显示效果应使用文章版式与 MDC 组件，而不是删除编号；`type: story` 提供居中的衬线标题与浅色圆形背景，`Quote` 的图标插槽可用于淡色大字叠在说明文字后面的效果。
+
+每篇新文章都要先检查实际 MDC 解析结果，修复意外露出的 `**`、删除线、反引号和链接标记，检查代码块是否闭合。语气用的单个 `~` 可能误触发删除线，需要显示波浪号时写成 `\~`，真正的删除线使用 `~~文字~~`。需要展示这些标记本身时，放入行内代码或代码块。构建后再检查生成的 HTML，确保问题没有残留。表格使用 `:---:` 设置列内容居中，并检查窄屏下的横向滚动。
+
+```powershell
+pnpm check:article content/posts/2026/http-https/index.md
+pnpm generate
+pnpm check:article --generated content/posts/2026/http-https/index.md
+```
+
 修改后至少执行完整校验与生产构建：
 
 ```powershell
