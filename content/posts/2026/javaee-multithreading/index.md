@@ -13,7 +13,15 @@ tags:
   - Java SE
   - 多线程
 image: /article-assets/2026/javaee-multithreading/images/cover.webp
+type: story
 ---
+
+::quote
+#icon
+[Thread]{style="color: var(--c-primary)"}
+#default
+生命周期 · 线程安全 · 同步机制
+::
 
 ## 1.初识线程 `Thread`
 ### 1.1 什么是多线程
@@ -344,7 +352,7 @@ Thread thread = new Thread(() -> {
 
 ### 3.2 `Thread` 常见构造方法
 | **方法** | **说明** |
-| --- | --- |
+| :---: | :---: |
 | `Thread()` | 创建线程对象 |
 | `Thread(Runnable target)` | 使用 `Runnable`<br/> 对象创建线程对象 |
 | `Thread(String name)` | 创建线程对象，并命名 |
@@ -566,7 +574,7 @@ while (!Thread.interrupted()) {
 它也可以用来检查**当前线程**的中断状态。注意是当前线程，因为`Thread.interrupted()`是静态方法。不过我们还要了解一个方法，就是 `thread.isInterrupted()`，它们存在一定区别。
 
 | 方法 | 是否静态 | 检查谁 | 会不会清除中断标志 |
-| --- | --- | --- | --- |
+| :---: | :---: | :---: | :---: |
 | `Thread.interrupted()` | 是 | 当前线程 | **会清除** |
 | `thread.isInterrupted()` | 否 | 指定的 `thread`<br/> 对象 | **不会清除** |
 
@@ -616,7 +624,7 @@ public class Demo4 {
 **如果线程正好在** `sleep()`：
 
 | 方法 | 说明 |
-| --- | --- |
+| :---: | :---: |
 | `public void interrupt()` | `thread.interrupt()`：向指定线程发出中断请求 |
 | `public static boolean interrupted()` | `Thread.interrupted()`：检查**当前线程**的中断状态，并**清除**中断状态 |
 | `public boolean isInterrupted()` | `thread.isInterrupted()`：检查**指定线程对象**的中断状态，**不会清除** |
@@ -717,7 +725,7 @@ public class Demo {
 两个执行流合并为一个，一个执行流结束，另一个继续执行；
 
 | **方法** | **说明** |
-| --- | --- |
+| :---: | :---: |
 | `public void join()` | 等待线程结束 |
 | `public void join(long millis)` | 等待线程结束，最多等 `millis` 毫秒 |
 | `public void join(long millis, int nanos)` | 同理，但可以更高精度 |
@@ -729,7 +737,7 @@ join 提供了带参数的版本，就是指定“超时时间”即等待的最
 
 ### 3.6 获取、休眠当前线程
 | **方法** | **说明** |
-| --- | --- |
+| :---: | :---: |
 | `public static Thread currentThread();` | 返回当前线程对象的引用 |
 
 
@@ -738,7 +746,7 @@ join 提供了带参数的版本，就是指定“超时时间”即等待的最
 
 
 | **方法** | **说明** |
-| --- | --- |
+| :---: | :---: |
 | `public static void sleep(long millis) throws InterruptedException` | 休眠当前线程 millis 毫秒 |
 | `public static void sleep(long millis, int nanos) throws InterruptedException` | 可以更高精度的休眠 |
 
@@ -768,7 +776,7 @@ sleep(0)不是不休眠，而是意味着让当前的线程立即放弃 CPU 资�
 Java 中一共有 6 种状态：
 
 | **状态** | **含义** | **比喻** |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | **NEW** | 新建状态 | 安排了工作，还未开始 |
 | **RUNNABLE** | 可运行状态 | 可工作的，又可以分成正在工作中和即将开始工作 |
 | **BLOCKED** | 阻塞状态 |  会议室有人使用，只能排队等   |
@@ -1441,7 +1449,7 @@ Counter counter2 = new Counter();
 这样的话两个线程分别尝试获取两把不同的锁，就不会产生竞争；
 
 | **写法** | **锁对象** |
-| --- | --- |
+| :---: | :---: |
 | `synchronized(lock){}` | lock对象 |
 | `public synchronized void method(){}` | 当前对象 this |
 | `public synchronized static void method(){}` | 当前类 Class 对象 |
@@ -1766,7 +1774,7 @@ public class Demo {
 我让 GPT 综合给出了一个表格，内容如下：
 
 | 对比 | `wait()` | `sleep()` |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | 所属类 | `Object` | `Thread` |
 | 主要作用 | 线程之间等待、协作 | 让当前线程休眠 |
 | 是否释放锁 | **释放锁** | **不释放锁** |

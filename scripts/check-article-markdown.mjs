@@ -29,14 +29,17 @@ if (!files.length) {
 	process.exit(1)
 }
 
-function unparsedText(node, issues, skipped = false) {
+function unparsedText(node, issues, literalTildes, skipped = false) {
 	const tag = node.tag || node.tagName
 	if (skipped || skippedTags.has(tag))
 		return
-	if ((node.type === 'text' || node.nodeName === '#text') && markers.test(node.value))
-		issues.add(node.value.trim())
+	if (node.type === 'text' || node.nodeName === '#text') {
+		const value = literalTildes.has(node.value) ? node.value.replaceAll('~', '') : node.value
+		if (markers.test(value))
+			issues.add(node.value.trim())
+	}
 	for (const child of node.children || node.childNodes || [])
-		unparsedText(child, issues)
+		unparsedText(child, issues, literalTildes)
 }
 
 function openFence(source) {
@@ -56,14 +59,27 @@ function openFence(source) {
 	return opening
 }
 
-function singleTildeDeletion(node, source, issues) {
+function checkTildeSyntax(node, source, issues, literalTildes) {
 	if (node.type === 'delete') {
 		const raw = source.slice(node.position.start.offset, node.position.end.offset)
 		if (!raw.startsWith('~~'))
 			issues.add(raw)
 	}
+	if (node.type === 'text') {
+		const raw = source.slice(node.position.start.offset, node.position.end.offset)
+		// Escaped prose tildes are intentional text, including a sentence-ending pair.
+		if (raw.includes('\\~') && !/(?<!\\)~/.test(raw))
+			literalTildes.add(node.value)
+	}
 	for (const child of node.children || [])
-		singleTildeDeletion(child, source, issues)
+		checkTildeSyntax(child, source, issues, literalTildes)
+}
+
+function checkTableAlignment(node, issues) {
+	if (node.type === 'table' && node.align.some(align => align !== 'center'))
+		issues.add(`第 ${node.position.start.line} 行的表格有未居中的列，请使用 :---: 对齐标记`)
+	for (const child of node.children || [])
+		checkTableAlignment(child, issues)
 }
 
 function findArticle(node) {
@@ -90,8 +106,11 @@ for (const file of files) {
 			throw new Error(`第 ${fence.line} 行的代码块没有闭合`)
 		const { body, data } = await parseMarkdown(source)
 		const issues = new Set()
-		singleTildeDeletion(syntaxParser.parse(source), source, issues)
-		unparsedText(body, issues)
+		const literalTildes = new Set()
+		const syntax = syntaxParser.parse(source)
+		checkTildeSyntax(syntax, source, issues, literalTildes)
+		checkTableAlignment(syntax, issues)
+		unparsedText(body, issues, literalTildes)
 		if (generated) {
 			const sourcePath = relative(resolve('content/posts'), resolve(file)).replaceAll('\\', '/')
 			if (sourcePath.startsWith('../'))
@@ -104,7 +123,7 @@ for (const file of files) {
 				throw new Error(`生成页面没有找到正文：${output}`)
 			if (countDeletion(article) !== countDeletion(body))
 				throw new Error('生成页面的删除线与源文件解析结果不一致，请重新构建后检查')
-			unparsedText(article, issues)
+			unparsedText(article, issues, literalTildes)
 		}
 		if (issues.size) {
 			failed = true

@@ -11,9 +11,15 @@ categories:
 tags:
   - Java SE
   - IDEA
+type: story
 ---
 
-
+::quote
+#icon
+[String]{style="color: var(--c-primary)"}
+#default
+不可变性 · 常量池 · 高效拼接
+::
 
 ## 1.字符串构造
 
@@ -134,7 +140,7 @@ String testOne = "你好";
 也就是说——
 
 | 变量 | 存放内容 |
-| --- | --- |
+| :---: | :---: |
 | `hello` | 指向字符串常量池中 `"你好"` |
 | `testOne` | 也指向同一个常量池中的 `"你好"` |
 
@@ -296,7 +302,7 @@ System.out.println(s1.compareToIgnoreCase(s4)); // 前k个字符完全相同，�
 查找，我们用到的思想就是索引了，String 类提供的常用查找的方法：
 
 | **方法** | **功能** |
-| --- | --- |
+| :---: | :---: |
 | char charAt(int index) | 返回 index 位置上字符，如果 index 为负数或者越界，抛出 IndexOutOfBoundsException 异常 |
 | int indexOf(int ch) | 返回 ch 第一次出现的位置，没有返回 -1 |
 | int indexOf(int ch,int fromIndex) | 从 fromindex 位置开始找 ch 第一次出现的位置，没有返回-1 |
@@ -344,7 +350,7 @@ double data2 = Double.parseDouble("12.34");
 ```
 
 | **方法名** | **描述** |
-| --- | --- |
+| :---: | :---: |
 | String toUpperCase() | 小写转大写 |
 | String toLowerCase() | 大写转小写 |
 | String toCharArray() | 字符串转数组 |
@@ -355,7 +361,7 @@ double data2 = Double.parseDouble("12.34");
 **替换**
 
 | **方法名** | **功能** |
-| --- | --- |
+| :---: | :---: |
 | String replaceAll(String regex,String replace) | 替换所有的指定内容<br/>(匹配此字符串的正则表达式,用来替换每个匹配项的字符串) |
 | String replaceFirst(String regex,String replacement) | 替换首个内容<br/>(匹配此字符串的正则表达式,<span style="color:inherit;">用来替换第一个匹配项的字符串)</span> |
 
@@ -370,7 +376,7 @@ double data2 = Double.parseDouble("12.34");
 **拆分**
 
 | **方法** | **功能** |
-| --- | --- |
+| :---: | :---: |
 | String\[\] split(String regex) | 将字符串全部拆分<br/>(正则表达式分隔符) |
 | String\[\] split(String regex,int limit) | 将字符串以指定的格式，拆分为 limit 组<br/>(正则表达式分隔符,分割的份数) |
 
@@ -399,7 +405,7 @@ for (int i = 0; i < s.length; i++) {
 **拆分**
 
 | **方法** | **描述** |
-| --- | --- |
+| :---: | :---: |
 | String\[\] substring(int beginIndex) | 从指定索引截取到结尾 |
 | String\[\] substring(int beginIndex, int endIndex)  | 截取部分内容 |
 
@@ -416,7 +422,7 @@ for (int i = 0; i < s.length; i++) {
 **补充方法**：
 
 | **方法** | **描述** |
-| --- | --- |
+| :---: | :---: |
 | boolean contains(CharSequence chars) | contains() 方法用于判断字符串中是否包含指定的字符或字符串<br/>chars -- 要判断的字符或字符串 |
 | String trim() | 返回字符串的副本，忽略前导空白和尾部空白 |
 
@@ -628,7 +634,7 @@ implements java.io.Serializable, CharSequence {
 
 ### 7.2 StringBuilder 和 StringBuffer
 | **方法** | **说明** |
-| --- | --- |
+| :---: | :---: |
 | `StringBuffer append(String str)` | 在尾部追加，相当于 `String` 的 `+=`，可以追加：`boolean`、`char`、`char[]`、`double`、`float`、`int`、`long`、`Object`、`String`、`StringBuffer`变量 |
 | `char charAt(int index)` | 获取 `index`位置的字符 |
 | `int length()` | 获取字符串的长度 |

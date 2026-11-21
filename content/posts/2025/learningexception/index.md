@@ -169,7 +169,7 @@ public class Example2 {
 因此，我们开始踏入 Java 的异常使用啦，先初步了解五个异常常用关键字：
 
 | 关键字 | 作用 | 位置 | 举例 |
-| --- | --- | --- | --- |
+| :---: | :---: | :---: | :---: |
 | `throw` | 抛出一个具体的异常对象 | 方法体内 | `throw new Exception("出错了");` |
 | `throws` | 声明该方法可能抛出哪些异常 | 方法声明上 | `public void readFile() throws IOException` |
 | `try` | 可能出错的代码块 | 方法体内 | `try { riskyCode(); }` |

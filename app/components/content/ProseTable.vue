@@ -53,7 +53,6 @@ const [scroll, toggleScroll] = useToggle(true)
 	th {
 		background-color: var(--c-bg-2);
 		font-weight: bold;
-		text-align: center;
 	}
 
 	tr {
@@ -67,6 +66,7 @@ const [scroll, toggleScroll] = useToggle(true)
 	th, td {
 		padding: 0.5em 0.8em;
 		border: 1px solid var(--c-border);
+		text-align: center;
 	}
 }
 </style>

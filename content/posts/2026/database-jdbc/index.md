@@ -118,7 +118,7 @@ maven：类似应用商店，在maven仓库中维护了所有的Java工程需要
 ## 3. 核心接口
 
 | 接口或类 | 作用 |
-|---|---|
+|:---:|:---:|
 | `DriverManager` | 根据 JDBC URL 获取连接，适合简单程序和入门练习 |
 | `DataSource` | 对“连接来源”的抽象，更适合配置、容器和连接池环境 |
 | `Connection` | 表示一次数据库会话，也负责事务控制 |
@@ -292,7 +292,7 @@ try (PreparedStatement ps = connection.prepareStatement(sql)) {
 ## 6. 执行 SQL 的三个方法
 
 | 方法 | 适用场景 | 返回值 |
-|---|---|---|
+|:---:|:---:|:---:|
 | `executeQuery()` | `SELECT` 查询 | `ResultSet` |
 | `executeUpdate()` | `INSERT`、`UPDATE`、`DELETE`，以及部分 DDL | `int`，表示驱动报告的影响行数 |
 | `execute()` | 结果类型事先不确定、可能返回多个结果 | `boolean`，`true` 表示当前结果为 `ResultSet` |
@@ -397,7 +397,7 @@ try (Connection conn = JdbcConfig.getConnection();
 常见类型对应关系：
 
 | MySQL 类型 | 推荐 Java 类型 | 常用方法 |
-|---|---|---|
+|:---:|:---:|:---:|
 | `VARCHAR`、`TEXT` | `String` | `getString`、`setString` |
 | `INT` | `int` / `Integer` | `getInt`、`setInt` |
 | `BIGINT` | `long` / `Long` | `getLong`、`setLong` |
@@ -504,7 +504,7 @@ catch (SQLException e) {
 ```
 
 | 现象 | 常见检查方向 |
-|---|---|
+|:---:|:---:|
 | `No suitable driver` | 驱动依赖是否进入运行时、URL 是否以 `jdbc:mysql:` 开头 |
 | `Access denied` | 用户名、密码、连接来源和 MySQL 授权是否匹配 |
 | `Unknown database` | 数据库是否创建，URL 中名称是否拼错 |

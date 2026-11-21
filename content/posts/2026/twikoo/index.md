@@ -119,7 +119,7 @@ MONGODB_URI="mongodb://twikoo:密码@127.0.0.1:27017/twikoo" HOST=127.0.0.1 PORT
 + `PORT=8080`：服务端口
 
 | **名称** | **描述** | **默认值** |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | `MONGODB_URI` | MongoDB 数据库连接字符串，不传则使用 lokijs | `null` |
 | `MONGO_URL` | MongoDB 数据库连接字符串，不传则使用 lokijs | `null` |
 | `TWIKOO_DATA` | lokijs 数据库存储路径 | `./data` |

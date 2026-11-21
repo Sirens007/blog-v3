@@ -11,8 +11,15 @@ categories:
 tags:
   - MySQL
 image: /article-assets/2026/database-transaction/images/cover.webp
+type: story
 ---
 
+::quote
+#icon
+[ACID]{style="color: var(--c-primary)"}
+#default
+事务 · 隔离级别 · MVCC
+::
 
 > 适用环境：MySQL 8.0，主要讨论 InnoDB
 >
@@ -44,7 +51,7 @@ show create table bank_account;
 ## 2. ACID 特性
 
 | 特性 | 含义 | 转账中的表现 | InnoDB 的主要实现 |
-| --- | --- | --- | --- |
+| :---: | :---: | :---: | :---: |
 | Atomicity 原子性 | 操作不可只完成一部分 | 扣款和入账一起成功或撤销 | undo log、回滚机制 |
 | Consistency 一致性 | 事务前后都满足数据与业务规则 | 总额不变、余额合法 | 约束、应用规则，以及其他三项共同保证 |
 | Isolation 隔离性 | 并发事务尽量像互不干扰地执行 | 转账中间状态不被错误使用 | MVCC、锁、隔离级别 |
@@ -310,7 +317,7 @@ MySQL服务被多个客户端同时访问，每个客户端执行的DML语句以
 ### 7.2 隔离级别及设置语法
 
 | 隔离级别 | 脏读 | 不可重复读 | 幻读（SQL 标准） | InnoDB 主要行为 |
-| --- | --- | --- | --- | --- |
+| :---: | :---: | :---: | :---: | :---: |
 | `READ UNCOMMITTED` 读未提交 | 可能 | 可能 | 可能 | 普通读可能看到未提交版本，业务中很少使用 |
 | `READ COMMITTED` 读已提交 | 避免 | 可能 | 可能 | 每条一致性读建立新快照；通常不使用间隙锁 |
 | `REPEATABLE READ` 可重复读 | 避免 | 避免 | 标准允许 | InnoDB 默认；普通读复用快照，范围锁定读用 Next-Key Lock 防典型幻读 |
@@ -518,7 +525,7 @@ where balance >= 1000;
 第一次结果有两行：
 
 | id   | name | balance |
-| ---- | ---- | ------- |
+| :---: | :---: | :---: |
 | 1    | 张三 | 1000    |
 | 2    | 李四 | 1000    |
 
@@ -545,7 +552,7 @@ where balance >= 1000;
 如果第二次结果变成三行：
 
 | id   | name | balance |
-| ---- | ---- | ------- |
+| :---: | :---: | :---: |
 | 1    | 张三 | 1000    |
 | 2    | 李四 | 1000    |
 | 3    | 王五 | 2000    |

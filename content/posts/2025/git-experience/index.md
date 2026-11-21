@@ -11,7 +11,15 @@ categories:
 tags:
   - Git
 image: /article-assets/2025/git-experience/images/cover.webp
+type: story
 ---
+
+::quote
+#icon
+[Git]{style="color: var(--c-primary)"}
+#default
+版本回退 · 分支管理 · 远程仓库
+::
 
 ## 📝以自己经验用Git
 
@@ -168,7 +176,7 @@ git diff --staged
 **开发中你经常会遇到这些情况：**
 
 | **场景** | **想做的事** |
-| --- | --- |
+| :---: | :---: |
 | 改错文件了 | 想恢复回之前保存的版本 |
 | add 错文件了 | 想撤回到未暂存状态 |
 | commit 之后后悔了 | 想撤销或回退提交 |

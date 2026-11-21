@@ -13,7 +13,15 @@ tags:
   - 进程
   - 线程
 image: /article-assets/2026/javaee-process/images/cover.webp
+type: story
 ---
+
+::quote
+#icon
+[Process]{style="color: var(--c-primary)"}
+#default
+资源管理 · 调度 · 上下文切换
+::
 
 **你有没有想过，当我们双击一个程序时，操作系统到底做了什么？**
 
@@ -223,7 +231,7 @@ pid（进程的身份标识符）、内存管理信息（记录或指向进程�
 
 关于这里我有一个例子有点意思：
 
-> 假设我是一个妹子~我长得好看又有才华，就有很多人追我~
+> 假设我是一个妹子\~我长得好看又有才华，就有很多人追我\~
 >
 > 有以下三个
 >

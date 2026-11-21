@@ -15,7 +15,15 @@ tags:
   - UDP
   - 网络编程
 image: /article-assets/2026/javase-socket/images/cover.webp
+type: story
 ---
+
+::quote
+#icon
+[Socket]{style="color: var(--c-primary)"}
+#default
+TCP / UDP · 回显服务器
+::
 
 ## 1.网络编程
 网络编程，指通过编写程序，利用计算机网络实现不用设备或进程之间的数据通信。
@@ -154,7 +162,7 @@ socket.send(packet);
 其**构造方法**如下：
 
 | 构造方法 | 作用 |
-| --- | --- |
+| :---: | :---: |
 | `DatagramSocket()` | 创建 UDP 套接字，由系统分配一个可用的本地端口（一般用于客户端） |
 | `DatagramSocket(int port)` | 创建 UDP 套接字，绑定指定的本地端口（一般用于服务端） |
 
@@ -174,7 +182,7 @@ socket.send(packet);
 **`DatagramSocket`的常用方法：**
 
 | 方法 | 作用 |
-| --- | --- |
+| :---: | :---: |
 | `void send(DatagramPacket p)` | 发送数据报，不会阻塞等待，直接发送 |
 | `void receive(DatagramPacket p)` | 接收数据报，默认会阻塞等待 |
 | `int getLocalPort()` | 获取这个套接字使用的本地端口 |
@@ -193,7 +201,7 @@ socket.send(packet);
 **`DatagramPacket`用于接收的构造方法：**
 
 | 构造方法 | 说明 |
-| --- | --- |
+| :---: | :---: |
 | `DatagramPacket(byte[] buf, int length)` | 创建接收数据报包，指定缓冲区和最大接收长度 |
 | `DatagramPacket(byte[] buf, int offset, int length)` | 创建接收数据报包，指定缓冲区、起始偏移量和最大接收长度 |
 
@@ -224,7 +232,7 @@ socket.receive(packet);
 **`DatagramPacket`用于发送的构造方法：**
 
 | 构造方法 | 说明 |
-| --- | --- |
+| :---: | :---: |
 | `DatagramPacket(byte[] buf, int length, InetAddress address, int port)` | 指定数据、长度、目标 IP 地址和端口 |
 | `DatagramPacket(byte[] buf, int offset, int length, InetAddress address, int port)` | 指定数据、起始偏移量、长度、目标 IP 地址和端口 |
 | `DatagramPacket(byte[] buf, int length, SocketAddress address)` | 指定数据和长度，使用 `SocketAddress`<br/> 指定目标地址（包含 IP 地址和端口） |
@@ -236,7 +244,7 @@ socket.receive(packet);
 涉及到的一些参数说明：
 
 | 参数 | 类型 | 作用 |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | `buf` | `byte[]` | 存放发送或接收数据的字节数组 |
 | `offset` | `int` | 数据在数组中的起始下标 |
 | `length` | `int` | 发送数据的长度，或允许接收的最大长度，单位为字节 |
@@ -248,7 +256,7 @@ socket.receive(packet);
 `DatagramPacket`常用方法：
 
 | 方法 | 作用 |
-| --- | --- |
+| :---: | :---: |
 | `byte[] getData()` | 获取存放数据的数组 |
 | `int getOffset()` | 获取有效数据的起始下标 |
 | `int getLength()` | 获取待发送或实际收到的数据长度 |
@@ -406,7 +414,7 @@ java -jar jar包名
 **常用构造方法：**
 
 | 构造方法 | 作用 |
-| --- | --- |
+| :---: | :---: |
 | `ServerSocket()` | 创建一个尚未绑定端口的 `ServerSocket` |
 | `ServerSocket(int port)` | 创建服务器 Socket，并绑定指定端口 |
 | `ServerSocket(int port, int backlog)` | 绑定端口，并指定连接等待队列长度 |
@@ -422,7 +430,7 @@ ServerSocket serverSocket = new ServerSocket(9090);
 **常用方法：**
 
 | 方法 | 作用 |
-| --- | --- |
+| :---: | :---: |
 | `accept()` | 等待客户端连接，并返回一个 `Socket` |
 | `bind(SocketAddress endpoint)` | 绑定 IP 和端口 |
 | `close()` | 关闭服务器 Socket |
@@ -457,7 +465,7 @@ System.out.println("客户端已连接");
 **常用构造方法：**
 
 | 方法 | 说明 |
-| --- | --- |
+| :---: | :---: |
 | `Socket()` | 创建一个尚未连接服务器的 Socket 对象，之后需要调用`connect()`建立连接 |
 | `Socket(String host, int port)` | 根据服务器主机地址和端口号创建 Socket，并立即尝试建立 TCP 连接 |
 | `Socket(InetAddress address, int port)` | 根据服务器的 `InetAddress`和端口号创建 Socket，并立即尝试建立 TCP 连接 |
@@ -470,7 +478,7 @@ System.out.println("客户端已连接");
 **常用方法：**
 
 | 方法 | 作用 |
-| --- | --- |
+| :---: | :---: |
 | `getInputStream()` | 获取输入流，**接收数据** |
 | `getOutputStream()` | 获取输出流，**发送数据** |
 | `getInetAddress()` | 获取对方 IP |
@@ -803,7 +811,7 @@ IO 多路复用，**就是让操作系统统一等待多个连接的 IO 事件�
 
 在我们前面写的 TCP 回显服务器一开始是没有使用线程池来完成的，于是就导致了第二个第三个线程...一直在等待第一个线程完成直至断开连接，这样也才到第二个线程（当然也还是要竞争~）
 
-于是乎就想出了使用线程池来让多个客户端一同完成服务~但是！这样就变成了每一个连接安排一个线程，各自等待自己的客户端。但如果连接很多，且大部分时间都没有消息，就会有很多线程在等待~
+于是乎就想出了使用线程池来让多个客户端一同完成服务\~但是！这样就变成了每一个连接安排一个线程，各自等待自己的客户端。但如果连接很多，且大部分时间都没有消息，就会有很多线程在等待\~
 
 那么 IO 多路复用就是为了**让一个线程照看多个连接，谁有数据，就先处理谁**。
 

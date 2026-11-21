@@ -13,7 +13,15 @@ tags:
   - I/O 流
   - 文件操作
 image: /article-assets/2026/javase-iostream/images/cover.webp
+type: story
 ---
+
+::quote
+#icon
+[Java I/O]{style="color: var(--c-primary)"}
+#default
+File · 字节流 · 字符流
+::
 
 **从开发的角度，文件分为两类**
 
@@ -36,14 +44,14 @@ Java 中通过`java.io.File`类对一个文件（包括目录）进行抽象的�
 ## 1.File 概述
 ### 属性
 | **修饰符及类型** | **属性** | **说明** |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | `static String` | `pathSeparator` | 依赖于系统的路径列表分隔符，以 `String`类型表示 |
 | `static char` | `pathSeparatorChar` | 依赖于系统的路径列表分隔符，以 `char`类型表示 |
 
 
 ### 构造方法
 | **签名** | **说明** |
-| --- | --- |
+| :---: | :---: |
 | `File(File parent, String child)` | 根据父目录的 `File`对象和子路径，创建新的 `File`实例 |
 | `File(String pathname)` | 根据路径创建新的 `File`实例，路径可以是绝对路径或相对路径 |
 | `File(String parent, String child)` | 根据父目录路径字符串和子路径，创建新的 `File`实例 |
@@ -53,7 +61,7 @@ String 类型的参数是文件的路径，使用绝对/相对路径均可~
 
 ### 方法
 | **返回值类型** | **方法签名** | **说明** |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | `String` | `getParent()` | 返回父路径；没有父路径时返回 `null` |
 | `String` | `getName()` | 返回文件或目录的名称 |
 | `String` | `getPath()` | 返回 `File`对象描述的路径 |
@@ -94,7 +102,7 @@ Java 中提供了几十个这样的流，在此我只讲解其中 8 个就足够
 **方法**
 
 | 修饰符及返回值类型 | 方法签名 | 说明 |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | int | `read()` | 读取一个字节的数据，返回 `-1`代表已经完全读完了 |
 | int | `read(byte[] b)` | 最多读取 `b.length`字节的数据到 `b`中，返回实际读取的数量，`-1`代表已经读完了 |
 | int | `read(byte[] b, int off, int len)` | 最多读取 `len - off`字节的数据到 `b`中，放在从 `off`开始的位置，返回实际读取的数量，`-1`代表已经读完了 |
@@ -109,7 +117,7 @@ Java 中提供了几十个这样的流，在此我只讲解其中 8 个就足够
 **构造方法**
 
 | 签名 | 说明 |
-| --- | --- |
+| :---: | :---: |
 | `FileInputStream(File file)` | 利用 `File`构造文件输入流 |
 | `FileInputStream(String name)` | 利用**文件路径**构造文件输入流 |
 
@@ -151,7 +159,7 @@ public static void main(String[] args) throws IOException {
 IntputStream 中的三个 read 方法
 
 | 方法 | 含义 | 返回值 |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | `read()` | 一次读取 1 个字节 | 字节值 `0~255`，结束返回 `-1` |
 | `read(byte[] b)` | 一次读取多个字节 | 实际读取的**字节数**，结束返回 `-1` |
 | `read(byte[] b, int off, int len)` | 读取数据到数组指定位置 | 实际读取的**字节数**，结束返回 `-1` |
@@ -193,7 +201,7 @@ Java 中，如果参数是引用类型，方法内部修改对象的时候，能
 **方法**
 
 | 修饰符及返回值类型 | 方法签名 | 说明 |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | `void` | `write(int b)` | 写入一个字节的数据 |
 | `void` | `write(byte[] b)` | 将 `b`这个字节数组中的数据全部写入输出流中 |
 | `void` | `write(byte[] b, int off, int len)` | 将字节数组 `b`中从 `off`位置开始的 `len`个字节写入输出流中 |
@@ -211,7 +219,7 @@ Java 中，如果参数是引用类型，方法内部修改对象的时候，能
 构造方法：
 
 | 构造方法 | 说明 |
-| --- | --- |
+| :---: | :---: |
 | `FileOutputStream(String name)` | 根据文件路径创建字节输出流。文件不存在会创建；文件已存在会**清空原内容** |
 | `FileOutputStream(String name, boolean append)` | 根据文件路径创建字节输出流，并指定是否追加写入 |
 | `FileOutputStream(File file)` | 根据 `File` 对象创建字节输出流。文件已存在时会**清空原内容** |
@@ -236,7 +244,7 @@ public static void main(String[] args) {
 构造方法：
 
 | 修饰符 | 构造方法 | 说明 |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | `protected` | `Reader()` | 创建一个新的字符输入流对象，默认以当前 Reader 对象作为同步锁 |
 | `protected` | `Reader(Object lock)` | 创建字符输入流，并指定用于同步操作的锁对象 |
 
@@ -248,7 +256,7 @@ public static void main(String[] args) {
 方法：
 
 | 返回值类型 | 方法 | 说明 |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | `int` | `read()` | 一次读取**一个字符**，读取到末尾返回 `-1` |
 | `int` | `read(char[] cbuf)` | 一次读取多个字符到字符数组中，返回实际读取的字符数量；末尾返回 `-1` |
 | `int` | `read(char[] cbuf, int off, int len)` | 从字符数组的 `off`位置开始，最多存入 `len`个字符 |
@@ -298,7 +306,7 @@ public static void main(String[] args) {
 构造方法
 
 | 修饰符 | 构造方法 | 说明 |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | `protected` | `Writer()` | 创建字符输出流，默认使用当前对象作为同步锁 |
 | `protected` | `Writer(Object lock)` | 创建字符输出流，并指定同步锁对象 |
 
@@ -310,7 +318,7 @@ public static void main(String[] args) {
 方法
 
 | 返回值类型 | 方法 | 说明 |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | `void` | `write(int c)` | 写入一个字符 |
 | `void` | `write(char[] cbuf)` | 写入一个字符数组中的全部字符 |
 | `void` | `write(char[] cbuf, int off, int len)` | 写入字符数组中从 `off`开始的 `len`个字符 |
