@@ -65,7 +65,7 @@ function checkTildeSyntax(node, source, issues, literalTildes) {
 		if (!raw.startsWith('~~'))
 			issues.add(raw)
 	}
-	if (node.type === 'text') {
+	if (node.type === 'text' && node.position) {
 		const raw = source.slice(node.position.start.offset, node.position.end.offset)
 		// Escaped prose tildes are intentional text, including a sentence-ending pair.
 		if (raw.includes('\\~') && !/(?<!\\)~/.test(raw))

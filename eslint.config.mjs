@@ -3,7 +3,13 @@ import css from '@zinkawaii/eslint-config-css'
 import { defineConfig } from 'eslint/config'
 
 export default antfu({
-	ignores: ['*.yaml'],
+	ignores: [
+		'*.yaml',
+		// 靶场原稿包含故意构造的实验语法，使用 check:article 验证实际 MDC 与生成页面，避免通用 Markdown/JS 规则改写代码。
+		'content/posts/2024/sqli-labs/index.md',
+		'content/posts/2024/upload-labs/index.md',
+		'content/posts/2025/ctfshow-web-notes/index.md',
+	],
 	stylistic: {
 		indent: 'tab',
 	},
